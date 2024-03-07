@@ -4,12 +4,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "repetition", "repetition\repetition.csproj", "{55F0C5F2-38DE-46CC-BC59-334FEB30FDE6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CB67444-F566-444A-9690-CFC36396E598} = {0CB67444-F566-444A-9690-CFC36396E598}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{07633A87-B7B7-4B68-9113-6D0528107CB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{6CA54D4B-103E-4E07-A25B-BC41B9FFCFBB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07633A87-B7B7-4B68-9113-6D0528107CB2} = {07633A87-B7B7-4B68-9113-6D0528107CB2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0CB67444-F566-444A-9690-CFC36396E598}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07633A87-B7B7-4B68-9113-6D0528107CB2} = {07633A87-B7B7-4B68-9113-6D0528107CB2}
+		{6CA54D4B-103E-4E07-A25B-BC41B9FFCFBB} = {6CA54D4B-103E-4E07-A25B-BC41B9FFCFBB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
