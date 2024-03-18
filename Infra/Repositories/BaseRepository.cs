@@ -40,6 +40,7 @@ namespace Infra.Repositories
         public void Delete(T entity)
         {
             _context.Remove(entity);
+            _context.SaveChanges();
         }
 
         public async Task<List<T>> GetAll(CancellationToken cancellationToken)
@@ -55,6 +56,7 @@ namespace Infra.Repositories
         public void Update(T entity)
         {
             _context.Update(entity);
+            _context.SaveChanges();
         }
         public void SaveRange(List<T> listToSave)
         {

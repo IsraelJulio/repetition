@@ -16,8 +16,8 @@ namespace repetition.Extensions
     {
         public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IQuestionRepository,QuestionRepository>();
-            services.AddTransient<IQuizRepository,QuizRepository>();
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddTransient<IQuizRepository, QuizRepository>();
         }
         public static void ConfigureApplication(this IServiceCollection services, IConfiguration configuration)
         {
@@ -25,6 +25,21 @@ namespace repetition.Extensions
             services.AddTransient<IQuizRepository, QuizRepository>();
 
 
+        }
+        public static IServiceCollection ConfigureCors(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder
+                    .WithOrigins(configuration.GetSection("Cors:AllowedOrigin").Get<string[]>())
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
+            });
+            return services;
         }
     }
 }

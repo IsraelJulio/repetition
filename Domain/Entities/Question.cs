@@ -8,11 +8,10 @@ namespace Domain.Entities
 {
     public class Question : BaseEntity
     {
-        public Question() { }
+        public Question() { CreatedAt = DateTime.UtcNow; }
         public string Front { get; set; }
         public string Back { get; set; }
         public long Rate { get; set; }
-        public Quiz Quiz { get; set; }
-        public int? QuizId { get; set; }
+        public int QuizId { get; set; } 
     }
 }

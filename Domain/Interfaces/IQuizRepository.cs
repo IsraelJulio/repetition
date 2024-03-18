@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IQuizRepository : IBaseRepository<Quiz>
     {
+        IEnumerable<Quiz> Get();
     }
 }

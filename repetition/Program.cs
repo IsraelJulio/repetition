@@ -9,6 +9,14 @@ builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplication(builder.Configuration);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsImplementation", builder => builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()) ;
+    //options.AddDefaultPolicy(builder =>
+    //{
+    //    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    //});
+});
 
 builder.Services.AddDbContext<RepetitionDbContext>(opt =>
 {
@@ -31,8 +39,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHttpsRedirection();
+
+
+app.UseCors("MyCorsImplementation");
+
+app.UseEndpoints(endpoints =>endpoints.MapControllers());
 
 app.Run();
