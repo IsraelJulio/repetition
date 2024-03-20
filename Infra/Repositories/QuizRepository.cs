@@ -29,11 +29,11 @@ namespace Infra.Repositories
 
             if (existingQuiz != null)
             {
-                _dbContext.Question.RemoveRange(existingQuiz.Questions); // Remover as perguntas antigas
+                _dbContext.Question.RemoveRange(existingQuiz.Questions);
                 existingQuiz.Title = entity.Title;
                 existingQuiz.Description = entity.Description;
-                existingQuiz.Questions = entity.Questions; // Adicionar as novas perguntas
-                _dbContext.SaveChanges(); // Salvar as alterações
+                existingQuiz.Questions = entity.Questions;
+                _dbContext.SaveChanges();
             }
 
             return existingQuiz;

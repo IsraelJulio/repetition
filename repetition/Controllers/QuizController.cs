@@ -19,7 +19,8 @@ namespace repetition.Controllers
             _quizRepository = quizRepository;
         }
 
-        [HttpGet()]
+        [HttpGet]
+        [EnableQuery]
         public IActionResult Get()
         {
             try
