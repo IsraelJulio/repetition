@@ -29,18 +29,19 @@ namespace Infra.Repositories
             this._dbSet = _context.Set<T>();
         }
 
-        public void Create(T entity)
+        public virtual T Create(T entity)
         {
             entity.CreatedAt = DateTime.UtcNow;
-            _context.Add(entity);
+            _dbSet.Add(entity);
             _context.SaveChanges();
-
+            return entity;
         }
 
-        public void Delete(T entity)
+        public virtual T Delete(T entity)
         {
-            _context.Remove(entity);
+            _dbSet.Remove(entity);
             _context.SaveChanges();
+            return entity;
         }
 
         public async Task<List<T>> GetAll(CancellationToken cancellationToken)
@@ -53,17 +54,24 @@ namespace Infra.Repositories
             return await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
-        public void Update(T entity)
+        public virtual T Update(T entity)
         {
-            _context.Update(entity);
+            _dbSet.Update(entity);
             _context.SaveChanges();
+            return entity;
         }
-        public void SaveRange(List<T> listToSave)
+        public virtual List<T> SaveRange(List<T> listToSave)
         {
-            _context.UpdateRange(listToSave);
+            _dbSet.UpdateRange(listToSave);
             _context.SaveChanges();
+            return listToSave;
            
         }
         public IQueryable<T> Get() => _dbSet.AsNoTracking().AsQueryable();
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
     }
 }

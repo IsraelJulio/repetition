@@ -13,5 +13,6 @@ namespace Domain.Entities
         public string Back { get; set; }
         public long Rate { get; set; }
         public int QuizId { get; set; } 
+        public Quiz? Quiz { get; set; }
     }
 }

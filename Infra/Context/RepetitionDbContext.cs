@@ -17,6 +17,11 @@ namespace Infra.Context
         public DbSet<Question> Question { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Quiz>()
+                .HasMany(x => x.Questions)
+                .WithOne(q=> q.Quiz)
+                .HasForeignKey(i=> i.QuizId);
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(RepetitionDbContext).Assembly);
         }

@@ -9,12 +9,13 @@ namespace Domain.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        void SaveRange(List<TEntity> list);
+        TEntity Create(TEntity entity);
+        TEntity Update(TEntity entity);
+        TEntity Delete(TEntity entity);
+        List<TEntity> SaveRange(List<TEntity> list);
         Task <TEntity> GetById(int id, CancellationToken cancellationToken);
         Task <List<TEntity>> GetAll(CancellationToken cancellationToken);
         IQueryable<TEntity> Get();
+        void Save();
     }
 }

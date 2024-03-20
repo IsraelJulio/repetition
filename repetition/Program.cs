@@ -1,11 +1,37 @@
+using Api.Extensions.OData;
 using Infra.Context;
+using Microsoft.AspNetCore.OData;
+using Microsoft.AspNetCore.OData.Routing.Conventions;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using repetition.Extensions;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddHttpClient();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
+builder.Services.AddControllers()
+                .AddOData(opt =>
+                {
+                    opt.Conventions.Remove(opt.Conventions.OfType<MetadataRoutingConvention>().First());
+                    opt.AddRouteComponents("odata"
+                       , EdmModelConfiguration.GetEdmModel()
+                       , services => SearchBindingsConfiguration.GetSearchBindings(services)
+                    );
+                    opt.Select().Expand().Filter().OrderBy().SetMaxTop(1000).Count();
+                }
+                )
+                .AddNewtonsoftJson(
+                    options =>
+                    {
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    }
+                  );
 builder.Services.AddControllers();
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplication(builder.Configuration);

@@ -51,7 +51,7 @@ namespace Infra.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Question", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Quiz", b =>
@@ -75,7 +75,7 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quiz");
+                    b.ToTable("Quiz", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Question", b =>
