@@ -14,5 +14,7 @@ namespace Domain.Entities
         public long Rate { get; set; }
         public int QuizId { get; set; } 
         public Quiz? Quiz { get; set; }
+        public int RightQuestions { get; set; }
+        public int WrongQuestions { get; set; }
     }
 }
