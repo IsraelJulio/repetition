@@ -33,6 +33,7 @@ namespace Infra.Repositories
                 existingQuiz.Title = entity.Title;
                 existingQuiz.Description = entity.Description;
                 existingQuiz.Questions = entity.Questions;
+                existingQuiz.Questions.ForEach(q => q.Rate = q.RightQuestions > 0 ? ((q.RightQuestions + q.WrongQuestions) / q.RightQuestions) * 100 : 0);
                 _dbContext.SaveChanges();
             }
 

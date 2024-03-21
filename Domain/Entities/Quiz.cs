@@ -11,6 +11,8 @@ namespace Domain.Entities
         public Quiz() { }
         public string Title { get; set; }
         public string Description { get; set; }
+        public virtual Category Category { get; set; }
+        public int? CategoryId { get; set; }
         public List<Question> Questions { get; set; }
         
     }

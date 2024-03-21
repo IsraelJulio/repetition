@@ -15,6 +15,7 @@ namespace Infra.Context
         }
         public DbSet<Quiz> Quiz { get; set; }
         public DbSet<Question> Question { get; set; }
+        public DbSet<Category> Category { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Quiz>()
