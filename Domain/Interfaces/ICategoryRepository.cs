@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ICategoryRepository : IBaseRepository<Category>
     {
-
+        //new Category Update(Category category);
     }
 }

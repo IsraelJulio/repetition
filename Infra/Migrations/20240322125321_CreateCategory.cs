@@ -35,6 +35,12 @@ namespace Infra.Migrations
                 table: "Quiz",
                 column: "CategoryId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Category_Name",
+                table: "Category",
+                column: "Name",
+                unique: true);
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Quiz_Category_CategoryId",
                 table: "Quiz",

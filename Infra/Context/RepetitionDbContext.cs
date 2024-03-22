@@ -20,9 +20,12 @@ namespace Infra.Context
         {
             modelBuilder.Entity<Quiz>()
                 .HasMany(x => x.Questions)
-                .WithOne(q=> q.Quiz)
-                .HasForeignKey(i=> i.QuizId);
+                .WithOne(q => q.Quiz)
+                .HasForeignKey(i => i.QuizId);
 
+            modelBuilder.Entity<Category>()
+                .HasIndex(c => c.Name)
+                .IsUnique();
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(RepetitionDbContext).Assembly);
         }

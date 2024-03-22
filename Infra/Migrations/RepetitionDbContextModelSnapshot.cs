@@ -39,6 +39,9 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Category");
                 });
 

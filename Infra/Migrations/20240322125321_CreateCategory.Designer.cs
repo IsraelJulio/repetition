@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infra.Migrations
 {
     [DbContext(typeof(RepetitionDbContext))]
-    [Migration("20240321223155_CreateCategory")]
+    [Migration("20240322125321_CreateCategory")]
     partial class CreateCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,9 @@ namespace Infra.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Category");
                 });

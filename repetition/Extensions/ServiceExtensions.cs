@@ -18,11 +18,13 @@ namespace repetition.Extensions
         {
             services.AddTransient<IQuestionRepository, QuestionRepository>();
             services.AddTransient<IQuizRepository, QuizRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
         }
         public static void ConfigureApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IQuestionService, QuestionService>();
-            services.AddTransient<IQuizRepository, QuizRepository>();
+            services.AddTransient<IQuizService, QuizService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
 
         }

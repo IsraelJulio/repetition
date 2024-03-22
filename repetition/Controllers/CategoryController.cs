@@ -32,21 +32,21 @@ namespace repetition.Controllers
             {
                 return StatusCode(500, e.Message);
             }
-            
+
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             try
             {
-                var results = _repo.Get().Where(x=> x.Id == id).FirstOrDefault();
+                var results = _repo.Get().Where(x => x.Id == id).FirstOrDefault();
                 return Ok(results);
             }
             catch (Exception e)
             {
                 return StatusCode(500, e.Message);
             }
-            
+
         }
         [HttpPost()]
         public IActionResult Post([FromBody] Category category)
@@ -78,8 +78,8 @@ namespace repetition.Controllers
         public IActionResult Delete(int id)
         {
             try
-             {
-                var entity = _repo.GetById(id,CancellationToken.None).Result;
+            {
+                var entity = _repo.GetById(id, CancellationToken.None).Result;
                 _repo.Delete(entity);
                 return Ok();
             }
