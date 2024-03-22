@@ -34,6 +34,42 @@ namespace repetition.Controllers
             }
             
         }
+        [HttpGet("Top/{top}/category/{categoryId}")]
+        public IActionResult GetByCategory(int top, int categoryId)
+        {
+            try
+            {
+
+                var questions = _quizRepository.Get().Where(quiz=> quiz?.Category?.Id == categoryId).Select(q=> q.Questions).SelectMany(list => list).OrderBy(x=> x.Rate).ToList();
+                var result = new Quiz
+                {
+                    Id = 0,
+                    Title = $"Top {top} spaced repetition",
+                    CategoryId = categoryId,
+                    Questions = questions,
+                };
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
+        }
+        [HttpGet("Available")]
+        public IActionResult GetAvailableCategory()
+        {
+            try
+            {
+                var results = _quizRepository.Get().Select(quiz => quiz?.Category).DistinctBy(x=> x.Id).ToList();
+                return Ok(results);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
+        }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

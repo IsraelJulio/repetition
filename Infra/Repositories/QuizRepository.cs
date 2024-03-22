@@ -21,7 +21,7 @@ namespace Infra.Repositories
 
         public IEnumerable<Quiz> Get()
         {
-            return base.Get().Include(x=> x.Questions);
+            return base.Get().Include(x=> x.Questions).Include(c=> c.Category);
         }
         public Quiz Update(Quiz entity)
         {
